@@ -9,7 +9,10 @@ const defaultState: CounterState = {
     value: 0,
 };
 
-export const counterReducer: Reducer<CounterState, CounterAction> = (state = defaultState, action) => {
+export const counterReducer: Reducer<CounterState, CounterAction> = (
+    state = defaultState,
+    action
+) => {
     switch (action.type) {
         case CounterActionType.Increment:
             return {

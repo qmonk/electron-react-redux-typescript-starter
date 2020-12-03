@@ -12,9 +12,10 @@ const Counter: React.FC<Props> = ({ value, increment, decrement, incrementBy }: 
 
     return (
         <>
-            Counter current value: {value}
+            Counter current value: <span>{value}</span>
             <br /> <br />
-            <button onClick={increment}>Increment</button> <button onClick={decrement}>Decrement</button>
+            <button onClick={increment}>Increment</button>{" "}
+            <button onClick={decrement}>Decrement</button>
             <br /> <br />
             <button
                 onClick={() => {
