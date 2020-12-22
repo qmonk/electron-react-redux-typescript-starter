@@ -18,3 +18,5 @@ npm run dev-main # run this in a different console tab
 ```bash
 npm run dist
 ```
+
+This will create a platform-specific installer in the `release` directory

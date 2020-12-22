@@ -1,14 +1,16 @@
 const path = require("path");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const baseConfig = require("./webpack.base.config");
 
-module.exports = {
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-    },
-    devtool: "source-map",
+module.exports = merge(baseConfig, {
     entry: "./src/main/main.ts",
     target: "electron-main",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "[name].js",
+    },
     module: {
         rules: [
             {
@@ -20,13 +22,6 @@ module.exports = {
                 },
             },
         ],
-    },
-    node: {
-        __dirname: false,
-    },
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].js",
     },
     plugins: [
         new webpack.ProgressPlugin(),
@@ -41,4 +36,4 @@ module.exports = {
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
         }),
     ],
-};
+});

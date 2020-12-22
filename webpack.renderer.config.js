@@ -2,15 +2,16 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const baseConfig = require("./webpack.base.config");
 
-module.exports = {
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-        mainFields: ["main", "module", "browser"],
-    },
-    entry: "./src/renderer/index.tsx",
+module.exports = merge(baseConfig, {
     target: "electron-renderer",
-    devtool: "source-map",
+    entry: "./src/renderer/index.tsx",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "js/[name].js",
+    },
     module: {
         rules: [
             {
@@ -31,10 +32,6 @@ module.exports = {
         port: 4000,
         publicPath: "/",
     },
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "js/[name].js",
-    },
     plugins: [
         new webpack.ProgressPlugin(),
         new ForkTsCheckerWebpackPlugin({
@@ -45,10 +42,10 @@ module.exports = {
             },
         }),
         new HtmlWebpackPlugin({
-            title: "electron-react-redux-typescript",
+            title: "electron-react-redux-typescript-starter",
         }),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
         }),
     ],
-};
+});

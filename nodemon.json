@@ -1,6 +1,6 @@
 {
     "ignore": ["node_modules"],
     "watch": ["./src/main"],
-    "exec": "webpack --config webpack.main.config.js --mode development && electron .",
+    "exec": "webpack --config webpack.main.config.js && electron .",
     "ext": "ts"
 }
