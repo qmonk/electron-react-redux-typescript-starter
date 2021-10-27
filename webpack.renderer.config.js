@@ -25,12 +25,13 @@ module.exports = merge(baseConfig, {
         ],
     },
     devServer: {
-        contentBase: path.join(__dirname, "../dist/renderer"),
+        static: {
+            directory: path.join(__dirname, "../dist/renderer"),
+        },
         historyApiFallback: true,
         compress: true,
         hot: true,
         port: 4000,
-        publicPath: "/",
     },
     plugins: [
         new webpack.ProgressPlugin(),
